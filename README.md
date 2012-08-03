@@ -10,4 +10,12 @@ downloading all the data and then programatically generating a peak hold type tr
 
 You can also average your traces with avgarray() or generate a minhold type function with minarray.
 
-
+To install
+-----------
+1. run make to generate the library
+2. rename library libudf_arrayfunc.so  and put it in /lib/lib64
+3. Then run the following commands in mysql to make functions available.
+  * mysql -u root myql -e "create AGGREGATE FUNCTION avgarray RETURNS STRING SONAME 'libudf_arrayfunc.so';"
+  * mysql -u root mysql -e "create AGGREGATE FUNCTION minarray RETURNS STRING SONAME 'libudf_arrayfunc.so';"
+  * mysql -u root mysql -e "create AGGREGATE FUNCTION maxarray RETURNS STRING SONAME 'libudf_arrayfunc.so';"
+4. Last but not least restart mysql
